@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Be My Valentine? ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    overflow: hidden;
+}
+
+.container {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+h1 {
+    color: #ff4d6d;
+    margin-bottom: 30px;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px;
+    transition: 0.2s ease;
+}
+
+#yesBtn {
+    background-color: #ff4d6d;
+    color: white;
+}
+
+#noBtn {
+    background-color: #ccc;
+}
+
+#celebration {
+    display: none;
+    margin-top: 20px;
+}
+
+#resetBtn {
+    display: none;
+    margin-top: 20px;
+    background-color: #444;
+    color: white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Will You Be My Valentine? ❤️</h1>
+
+    <button id="yesBtn">Yes 😍</button>
+    <button id="noBtn">No 😢</button>
+
+    <div id="celebration">
+        <h2>YAYYYYY!!! 🎉💖</h2>
+
+        <img src="valentines.gif" width="250">
+
+    </div>
+
+    <button id="resetBtn">Reset 🔄</button>
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const celebration = document.getElementById("celebration");
+const resetBtn = document.getElementById("resetBtn");
+
+function moveNoButton() {
+    const padding = 10;
+
+    const btnWidth = noBtn.offsetWidth;
+    const btnHeight = noBtn.offsetHeight;
+
+    const maxX = window.innerWidth - btnWidth - padding;
+    const maxY = window.innerHeight - btnHeight - padding;
+
+    const randomX = Math.floor(Math.random() * maxX);
+    const randomY = Math.floor(Math.random() * maxY);
+
+    noBtn.style.position = "fixed";
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
+}
+
+noBtn.addEventListener("mouseenter", moveNoButton);
+
+noBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    moveNoButton();
+});
+
+yesBtn.addEventListener("click", () => {
+    celebration.style.display = "block";
+    resetBtn.style.display = "inline-block";
+    yesBtn.style.display = "none";
+    noBtn.style.display = "none";
+});
+
+
+resetBtn.addEventListener("click", () => {
+    celebration.style.display = "none";
+    resetBtn.style.display = "none";
+    yesBtn.style.display = "inline-block";
+    noBtn.style.display = "inline-block";
+    noBtn.style.position = "static";
+    noBtn.style.left = "";
+    noBtn.style.top = "";
+});
+</script>
+
+</body>
+</html>
